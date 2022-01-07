@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="driversContext" prefHeight="749.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DriversFormController">
+   <children>
+      <Pane layoutX="-1.0" prefHeight="118.0" prefWidth="1222.0" style="-fx-background-color: #0026ff;">
+         <children>
+            <Label layoutX="36.0" layoutY="29.0" text="Drivers List" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="47.0" />
+               </font>
+            </Label>
+            <Button layoutX="1034.0" layoutY="36.0" mnemonicParsing="false" onAction="#backToHomeOnAction" prefHeight="55.0" prefWidth="133.0" style="-fx-background-color: #da0000;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+            <Separator layoutX="328.0" layoutY="65.0" prefHeight="14.0" prefWidth="623.0" />
+         </children>
+      </Pane>
+      <TableView fx:id="tblDriver" layoutX="46.0" layoutY="231.0" prefHeight="493.0" prefWidth="1132.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="236.0" text="Name" />
+          <TableColumn fx:id="colNIC" minWidth="7.0" prefWidth="171.0" text="NIC" />
+            <TableColumn fx:id="colLiceNo" prefWidth="188.0" text="Driving License No" />
+            <TableColumn fx:id="colAddress" prefWidth="224.0" text="Address" />
+            <TableColumn fx:id="colContact" prefWidth="189.0" text="Contact" />
+            <TableColumn fx:id="colDelete" prefWidth="122.0" text="Delete" />
+        </columns>
+      </TableView>
+      <JFXButton buttonType="RAISED" layoutX="46.0" layoutY="152.0" onAction="#addDriverOnAction" style="-fx-background-color: #11dd33;" text=" Add Drivers">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="USER_PLUS" size="30" text="" wrappingWidth="34.28571319580078" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
