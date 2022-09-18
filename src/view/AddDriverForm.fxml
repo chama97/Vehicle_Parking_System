@@ -9,59 +9,63 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="addDriverContext" prefHeight="545.0" prefWidth="863.0" style="-fx-background-color: #001704;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddDriverFormController">
+<AnchorPane fx:id="addDriverContext" prefHeight="643.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddDriverFormController">
    <children>
-      <Pane prefHeight="71.0" prefWidth="863.0" style="-fx-background-color: #008c1c;">
+      <Pane prefHeight="71.0" prefWidth="758.0" style="-fx-background-color: #31783a;">
          <children>
-            <Label layoutX="105.0" layoutY="6.0" prefHeight="60.0" prefWidth="239.0" text="Add Drivers" textFill="WHITE">
+            <Label layoutX="288.0" layoutY="8.0" prefHeight="60.0" prefWidth="239.0" text="Add Drivers" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <FontAwesomeIconView fill="WHITE" glyphName="USER_PLUS" layoutX="57.0" layoutY="47.0" size="27" />
+            <FontAwesomeIconView fill="WHITE" glyphName="USER_PLUS" layoutX="238.0" layoutY="47.0" size="27" />
          </children>
       </Pane>
-      <Pane layoutX="4.0" layoutY="75.0" prefHeight="465.0" prefWidth="855.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <JFXTextField fx:id="txtDrName" layoutX="166.0" layoutY="72.0" onAction="#moveToNICOnAction" prefHeight="31.0" prefWidth="579.0" unFocusColor="BLACK" />
-            <JFXTextField fx:id="txtLiceNo" layoutX="243.0" layoutY="204.0" onAction="#moveToAddressOnAction" prefHeight="31.0" prefWidth="358.0" />
-            <JFXTextField fx:id="txtNIC" layoutX="169.0" layoutY="139.0" onAction="#moveToLicenseOnAction" prefHeight="31.0" prefWidth="431.0" />
-            <JFXButton buttonType="RAISED" layoutX="710.0" layoutY="383.0" onAction="#AddDriverSaveOnAction" prefHeight="50.0" prefWidth="119.0" style="-fx-background-color: #008c1c;" text="Save" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="23.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <Label layoutX="44.0" layoutY="75.0" text="Name :">
-               <font>
-                  <Font name="Calisto MT" size="20.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txtAddress" layoutX="169.0" layoutY="293.0" onAction="#moveToContactOnAction" prefHeight="31.0" prefWidth="431.0" />
-            <Label layoutX="45.0" layoutY="296.0" text="Address :">
-               <font>
-                  <Font name="Calisto MT" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="46.0" layoutY="213.0" text="Driving license No :">
-               <font>
-                  <Font name="Calisto MT" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="41.0" layoutY="142.0" text="NIC :">
-               <font>
-                  <Font name="Calisto MT" size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="46.0" layoutY="371.0" text="Contact :">
-               <font>
-                  <Font name="Calisto MT" size="20.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txtContact" layoutX="169.0" layoutY="368.0" prefHeight="31.0" prefWidth="431.0" />
-         </children>
-      </Pane>
+      <JFXTextField fx:id="txtDrName" layoutX="176.0" layoutY="148.0" onAction="#moveToNICOnAction" prefHeight="31.0" prefWidth="506.0" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtLiceNo" layoutX="253.0" layoutY="280.0" onAction="#moveToAddressOnAction" prefHeight="31.0" prefWidth="431.0" />
+      <JFXTextField fx:id="txtNIC" layoutX="179.0" layoutY="215.0" onAction="#moveToLicenseOnAction" prefHeight="31.0" prefWidth="506.0" />
+      <JFXButton buttonType="RAISED" layoutX="413.0" layoutY="526.0" onAction="#AddDriverSaveOnAction" prefHeight="60.0" prefWidth="268.0" style="-fx-background-color: #31783a;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="54.0" layoutY="151.0" text="Name :">
+         <font>
+            <Font name="Calisto MT" size="20.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtAddress" layoutX="179.0" layoutY="369.0" onAction="#moveToContactOnAction" prefHeight="31.0" prefWidth="506.0" />
+      <Label layoutX="55.0" layoutY="372.0" text="Address :">
+         <font>
+            <Font name="Calisto MT" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="289.0" text="Driving license No :">
+         <font>
+            <Font name="Calisto MT" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="218.0" text="NIC :">
+         <font>
+            <Font name="Calisto MT" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="56.0" layoutY="447.0" text="Contact :">
+         <font>
+            <Font name="Calisto MT" size="20.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtContact" layoutX="179.0" layoutY="444.0" prefHeight="31.0" prefWidth="506.0" />
+      <JFXButton buttonType="RAISED" layoutX="93.0" layoutY="526.0" onAction="#CancelOnAction" prefHeight="60.0" prefWidth="268.0" style="-fx-background-color: #7c7c7c;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>
