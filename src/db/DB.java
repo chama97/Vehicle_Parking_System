@@ -1,7 +1,6 @@
 package db;
 
-import model.Driver;
-import model.Vehicle;
+import model.*;
 
 import java.util.ArrayList;
 
@@ -46,6 +45,35 @@ public class DB {
         driverList.add(new Driver("Dinesh Udara", " 9673537479V", "  B3455783", " Bambalapitiya", "  0764545856"));
         driverList.add(new Driver("Jineth Dilshan", " 9973537839V", "  B9076789", " Ratmalana", "  0714534356"));
         driverList.add(new Driver(" Priyanga Perera", " 9173537479V", "  B4689789", " Kollupitiya", "  0764545856"));
+    }
+
+    public static ArrayList<Slot>  slotTable = new ArrayList();
+    static {
+        slotTable.add(new Slot("Van","1",false));
+        slotTable.add(new Slot("Van","2",false));
+        slotTable.add(new Slot("Van","3",false));
+        slotTable.add(new Slot("Van","4",false));
+        slotTable.add(new Slot("Cargo Lorry","5",false));
+        slotTable.add(new Slot("Cargo Lorry","6",false));
+        slotTable.add(new Slot("Cargo Lorry","7",false));
+        slotTable.add(new Slot("Cargo Lorry","8",false));
+        slotTable.add(new Slot("Cargo Lorry","9",false));
+        slotTable.add(new Slot("Cargo Lorry","10",false));
+        slotTable.add(new Slot("Cargo Lorry","11",false));
+        slotTable.add(new Slot("Van","12",false));
+        slotTable.add(new Slot("Van","13",false));
+        slotTable.add(new Slot("Bus","14",false));
+    }
+
+    public static ArrayList<Delivery> deliveryList = new ArrayList<Delivery>();
+
+    static {
+
+    }
+
+    public static ArrayList<Parking> parkingList = new ArrayList<Parking>();
+    static {
+
     }
 
 }
