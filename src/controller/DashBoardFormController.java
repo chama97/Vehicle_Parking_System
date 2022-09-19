@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -22,7 +21,6 @@ import model.Vehicle;
 import java.io.IOException;
 import java.net.URL;
 
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -111,7 +109,7 @@ public class DashBoardFormController {
     private void loadAllVehicles() {
         ArrayList<Vehicle> all = DB.vehicleList;
         for (Vehicle dto : all) {
-            cmbDriver.getItems().add(dto.getVehicleNo());
+            cmbVehicle.getItems().add(dto.getVehicleNo());
         }
     }
 
@@ -147,37 +145,53 @@ public class DashBoardFormController {
 
     public void deliveryShiftSaveOnAction(ActionEvent actionEvent) {
 
-        Delivery delivery = new Delivery(cmbVehicle.getValue(), lblVehicleType.getText(), cmbDriver.getValue(), lblTime.getText());
-        try{
-            FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/OnDeliveryForm.fxml"));
-            Parent parent = loader.load();
-           OnDeliveryFormController controller = loader.getController();
+        if(cmbVehicle.getValue()!=null && cmbDriver.getValue()!=null) {
+            String data = (String.valueOf(cmbVehicle.getValue()));
 
-            if (controller.getDeliveryList().add(delivery)) {
-                controller.loadAllSDelivery();
-
+            for (int i=0; i<DB.parkingList.size(); i++) {
+                if (DB.parkingList.get(i).getVehicleNo().contains(data)) {
+                    DB.parkingList.remove(i);
+                }
             }
-
-            Stage window = (Stage) dashBoardContext.getScene().getWindow();
-            window.setScene(new Scene(parent));
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            Delivery delivery = new Delivery(cmbVehicle.getValue(), lblVehicleType.getText(), cmbDriver.getValue(), lblTime.getText());
+            DB.deliveryList.add(delivery);
         }
     }
 
     public void vehicleTypeOnAction(ActionEvent actionEvent) {
-        if (cmbVehicle.getValue().equals("NA-3434")) {
-            lblVehicleType.setText("Bus");
-        }else if (cmbVehicle.getValue().equals("KA-4563") || cmbVehicle.getValue().equals("58-3567") || cmbVehicle.getValue().equals( "GF-4358") || cmbVehicle.getValue().equals("CCB-3568") || cmbVehicle.getValue().equals( "QA-3369") || cmbVehicle.getValue().equals("LM-6679")){
-            lblVehicleType.setText("Van");
-        } else {
-            lblVehicleType.setText("Cargo Lorry");
-
+        String id = cmbVehicle.getValue();
+        for(int i=0; i<DB.vehicleList.size(); i++){
+            String no = DB.vehicleList.get(i).getVehicleNo();
+            if(id.equals(no)){
+                lblVehicleType.setText(DB.vehicleList.get(i).getVehicleType());
+            }
         }
+        switch (lblVehicleType.getText()){
+            case "Van": {
+                setSlot("Van");
+            }break;
 
-        txtSlotNo.setText("      01");
+            case "Bus": {
+                setSlot("Bus");
+            }break;
+
+            case "Cargo Lorry": {
+                setSlot("Cargo Lorry");
+            }break;
+        }
     }
+
+    private void setSlot(String vehicleType) {
+        for(int i=0; i<DB.slotTable.size(); i++){
+            for (int j=0; j<DB.slotTable.size(); j++){
+                if(vehicleType.equals(DB.slotTable.get(i).getVehicleType()) && DB.slotTable.get(i).isStatus() == false){
+                    txtSlotNo.setText(DB.slotTable.get(i).getSlotNo());
+                    return;
+                }
+            }
+        }
+    }
+
 
     public void driverNameOnAction (ActionEvent actionEvent){
     }

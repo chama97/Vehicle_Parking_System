@@ -50,7 +50,7 @@
             <Font name="System Bold" size="60.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnPark" buttonType="RAISED" layoutX="821.0" layoutY="236.0" onAction="#parkVehicleSaveOnAction" prefHeight="87.0" prefWidth="282.0" style="-fx-background-color: #369036; -fx-background-radius: 10; -fx-cursor: hand;" text="   Park Vehicle" textFill="WHITE">
+      <JFXButton fx:id="btnPark" buttonType="RAISED" disable="true" layoutX="821.0" layoutY="236.0" onAction="#parkVehicleSaveOnAction" prefHeight="87.0" prefWidth="282.0" style="-fx-background-color: #369036; -fx-background-radius: 10; -fx-cursor: hand;" text="   Park Vehicle" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -97,7 +97,7 @@
             <ComboBox fx:id="cmbDriver" layoutX="26.0" layoutY="12.0" onAction="#driverNameOnAction" prefHeight="41.0" prefWidth="258.0" />
          </children>
       </Pane>
-      <JFXButton fx:id="btnDelivery" buttonType="RAISED" layoutX="818.0" layoutY="349.0" onAction="#deliveryShiftSaveOnAction" prefHeight="87.0" prefWidth="289.0" style="-fx-background-color: #369036; -fx-background-radius: 10; -fx-cursor: hand;" text="       On Delivery Shift" textFill="WHITE">
+      <JFXButton fx:id="btnDelivery" buttonType="RAISED" disable="true" layoutX="818.0" layoutY="349.0" onAction="#deliveryShiftSaveOnAction" prefHeight="87.0" prefWidth="289.0" style="-fx-background-color: #369036; -fx-background-radius: 10; -fx-cursor: hand;" text="       On Delivery Shift" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -105,12 +105,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label fx:id="lblTime" layoutX="382.0" layoutY="556.0" prefHeight="143.0" prefWidth="309.0" style="-fx-background-color: #c9cfdd;" text="      " textAlignment="CENTER">
+      <Label fx:id="lblTime" alignment="CENTER" layoutX="382.0" layoutY="556.0" prefHeight="143.0" prefWidth="309.0" style="-fx-background-color: #c9cfdd;" text="      " textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="50.0" />
          </font>
       </Label>
-      <Label fx:id="lblDate" layoutX="382.0" layoutY="498.0" prefHeight="58.0" prefWidth="309.0" style="-fx-background-color: #647390;" text="          " textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="lblDate" alignment="CENTER" layoutX="382.0" layoutY="498.0" prefHeight="58.0" prefWidth="309.0" style="-fx-background-color: #647390;" text="          " textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Bookshelf Symbol 7" size="22.0" />
          </font>

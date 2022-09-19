@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Parking;
-import view.tm.DriverTm;
+
 
 import java.io.IOException;
 import java.net.URL;

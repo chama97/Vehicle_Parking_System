@@ -24,26 +24,26 @@ public class AddDriverFormController {
 
     public void AddDriverSaveOnAction(ActionEvent actionEvent) {
 
-        Driver driver = new Driver(txtDrName.getText(), txtNIC.getText(), txtLiceNo.getText(), txtAddress.getText(), txtContact.getText());
-        try{
-            FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/DriversForm.fxml"));
-            Parent parent = loader.load();
-            DriversFormController controller = loader.getController();
-
-            if (controller.getDriverList().add(driver)) {
-                controller.loadAllSDrivers();
-                new Alert(Alert.AlertType.CONFIRMATION, "Saved..", ButtonType.CLOSE).show();
-            } else {
-                new Alert(Alert.AlertType.WARNING, "Try Again..", ButtonType.CLOSE).show();
-            }
-
-
-            Stage window = (Stage) addDriverContext.getScene().getWindow();
-            window.setScene(new Scene(parent));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Driver driver = new Driver(txtDrName.getText(), txtNIC.getText(), txtLiceNo.getText(), txtAddress.getText(), txtContact.getText());
+//        try{
+//            FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/DriversForm.fxml"));
+//            Parent parent = loader.load();
+//
+//
+//            if (controller.getDriverList().add(driver)) {
+//                controller.loadAllSDrivers();
+//                new Alert(Alert.AlertType.CONFIRMATION, "Saved..", ButtonType.CLOSE).show();
+//            } else {
+//                new Alert(Alert.AlertType.WARNING, "Try Again..", ButtonType.CLOSE).show();
+//            }
+//
+//
+//            Stage window = (Stage) addDriverContext.getScene().getWindow();
+//            window.setScene(new Scene(parent));
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
