@@ -1,5 +1,6 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import db.DB;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -35,6 +36,8 @@ public class DashBoardFormController {
     public ComboBox<String> cmbVehicle;
     public Label lblVehicleType;
     public volatile boolean stop;
+    public JFXButton btnPark;
+    public JFXButton btnDelivery;
 
 
     public void initialize() {
@@ -43,42 +46,6 @@ public class DashBoardFormController {
         loadAllDrivers();
         loadAllVehicles();
 
-       /* cmbDriver.getItems().addAll(
-                "Sumith Kumara",
-                "Amila Pathirana",
-                "Jithmal Perera",
-                "Sumith Dissanayaka",
-                "Sumanasiri Herath",
-                "Awantha Fernando",
-                "Charith Sudara",
-                "Prashan Dineth",
-                "Chethiya Dilan",
-                "Dushantha Perera",
-                "Sumith Udayanga",
-                "Dinesh Udara",
-                "Udana Chathuranga",
-                "Mohommad Riaz",
-                "Sandun Kumara",
-                "Priyanga Perera"
-        );
-
-        cmbVehicle.getItems().addAll(
-                "NA-3434",
-                "KA-4563",
-                "58-3567",
-                "GF-4358",
-                "CCB-3568",
-                "LM-6679",
-                "QA-3369",
-                "KB-3668",
-                "JJ-9878",
-                "GH-5772",
-                "XY-4456",
-                "YQ-3536",
-                "CBB-3566",
-                "QH-3444"
-
-        );*/
     }
 
     private void loadDateAndTime() {
@@ -121,30 +88,32 @@ public class DashBoardFormController {
     }
 
     public void parkVehicleSaveOnAction(ActionEvent actionEvent) {
-        Parking park = new Parking( lblVehicleType.getText(),cmbVehicle.getValue(), txtSlotNo.getText(), lblTime.getText(), lblDate.getText());
-        try{
-            FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/InParkingForm.fxml"));
-            Parent parent = loader.load();
-            InParkingFormController controller = loader.getController();
 
-            if (controller.getParkList().add(park)) {
-                controller.loadAllSParks();
-
+        for(int i=0; i<DB.slotTable.size(); i++) {
+            if (txtSlotNo.getText().equals(DB.slotTable.get(i).getSlotNo())) {
+                DB.slotTable.get(i).setStatus(true);
             }
-
-            Stage window = (Stage) dashBoardContext.getScene().getWindow();
-            window.setScene(new Scene(parent));
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        if(cmbVehicle.getValue()!=null) {
+            String data = (String.valueOf(cmbVehicle.getValue()));
+            Parking parking = new Parking( lblVehicleType.getText(),cmbVehicle.getValue(), txtSlotNo.getText(), lblTime.getText(), lblDate.getText());
+            DB.parkingList.add(parking);
+            clearData();
+            btnDelivery.setDisable(true);
+            btnPark.setDisable(true);
 
-
+            for (int i=0; i<DB.deliveryList.size(); i++) {
+                if (DB.deliveryList.get(i).getVehicleNo().contains(data)) {
+                    DB.deliveryList.remove(i);
+                }
+            }
+            Delivery delivery = new Delivery(cmbVehicle.getValue(), lblVehicleType.getText(), cmbDriver.getValue(), lblTime.getText());
+            DB.deliveryList.add(delivery);
+        }
     }
 
 
     public void deliveryShiftSaveOnAction(ActionEvent actionEvent) {
-
         if(cmbVehicle.getValue()!=null && cmbDriver.getValue()!=null) {
             String data = (String.valueOf(cmbVehicle.getValue()));
 
@@ -155,8 +124,32 @@ public class DashBoardFormController {
             }
             Delivery delivery = new Delivery(cmbVehicle.getValue(), lblVehicleType.getText(), cmbDriver.getValue(), lblTime.getText());
             DB.deliveryList.add(delivery);
+            clearData();
+            btnDelivery.setDisable(true);
+            btnPark.setDisable(true);
+        }
+        for (int i=0; i<DB.parkingList.size(); i++) {
+            if (cmbVehicle.getValue().equals(DB.parkingList.get(i).getVehicleNo())) {
+                setStatusFalse(DB.parkingList.get(i).getSlotNo());
+            }
         }
     }
+
+    private void setStatusFalse(String slot) {
+        for (int i=0; i<DB.slotTable.size(); i++){
+            if (DB.slotTable.get(i).getSlotNo().equals(slot)){
+                DB.slotTable.get(i).setStatus(false);
+            }
+        }
+    }
+
+    private void clearData() {
+        lblVehicleType.setText(null);
+        txtSlotNo.setText(null);
+        cmbVehicle.getSelectionModel().clearSelection();
+        cmbDriver.getSelectionModel().clearSelection();
+    }
+
 
     public void vehicleTypeOnAction(ActionEvent actionEvent) {
         String id = cmbVehicle.getValue();
@@ -192,8 +185,11 @@ public class DashBoardFormController {
         }
     }
 
-
     public void driverNameOnAction (ActionEvent actionEvent){
+        if(lblVehicleType.getText()!=null) {
+            btnPark.setDisable(false);
+            btnDelivery.setDisable(false);
+        }
     }
 }
 
