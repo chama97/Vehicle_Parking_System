@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class DashBoardFormController {
-    public static AnchorPane dashBoardContext;
+    public AnchorPane dashBoardContext;
     public Label txtSlotNo;
     public ComboBox<String> cmbDriver;
     public Label lblTime;
