@@ -49,7 +49,7 @@ public class InParkingFormController {
         for (Parking temp : DB.parkingList
         ) {
             tmObservableList.add(
-                   new Parking(temp.getVehicleNo(), temp.getVehicleType(), temp.getSlotNo(), temp.getTime(), temp.getDate())
+                   new Parking(temp.getVehicleNo(), temp.getVehicleType(), temp.getSlotNo(), temp.getTime())
             );
         }
         tblPark.setItems(tmObservableList);

@@ -35,7 +35,6 @@ public class DashBoardFormController {
     public Label lblDate;
     public ComboBox<String> cmbVehicle;
     public Label lblVehicleType;
-    public volatile boolean stop;
     public JFXButton btnPark;
     public JFXButton btnDelivery;
 
@@ -98,11 +97,8 @@ public class DashBoardFormController {
         }
         if(cmbVehicle.getValue()!=null) {
             String data = (String.valueOf(cmbVehicle.getValue()));
-            Parking parking = new Parking( lblVehicleType.getText(),cmbVehicle.getValue(), txtSlotNo.getText(), lblTime.getText(), lblDate.getText());
+            Parking parking = new Parking( data, lblVehicleType.getText(), txtSlotNo.getText(), lblTime.getText());
             DB.parkingList.add(parking);
-            clearData();
-            btnDelivery.setDisable(true);
-            btnPark.setDisable(true);
 
             for (int i=0; i<DB.deliveryList.size(); i++) {
                 if (DB.deliveryList.get(i).getVehicleNo().contains(data)) {
@@ -110,6 +106,9 @@ public class DashBoardFormController {
                 }
             }
         }
+        clearData();
+        btnDelivery.setDisable(true);
+        btnPark.setDisable(true);
     }
 
 
@@ -124,15 +123,15 @@ public class DashBoardFormController {
             }
             Delivery delivery = new Delivery(cmbVehicle.getValue(), lblVehicleType.getText(), cmbDriver.getValue(), lblTime.getText());
             DB.deliveryList.add(delivery);
-            clearData();
-            btnDelivery.setDisable(true);
-            btnPark.setDisable(true);
         }
         for (int i=0; i<DB.parkingList.size(); i++) {
             if (cmbVehicle.getValue().equals(DB.parkingList.get(i).getVehicleNo())) {
                 setStatusFalse(DB.parkingList.get(i).getSlotNo());
             }
         }
+        clearData();
+        btnDelivery.setDisable(true);
+        btnPark.setDisable(true);
     }
 
     private void setStatusFalse(String slot) {
@@ -146,31 +145,34 @@ public class DashBoardFormController {
     private void clearData() {
         lblVehicleType.setText(null);
         txtSlotNo.setText(null);
-//        cmbVehicle.getSelectionModel().clearSelection();
-//        cmbDriver.getSelectionModel().clearSelection();
+        cmbVehicle.valueProperty().set(null);;
+        cmbDriver.valueProperty().set(null);
     }
 
 
     public void vehicleTypeOnAction(ActionEvent actionEvent) {
-        String id = cmbVehicle.getValue();
-        for(int i=0; i<DB.vehicleList.size(); i++){
-            String no = DB.vehicleList.get(i).getVehicleNo();
-            if(id.equals(no)){
-                lblVehicleType.setText(DB.vehicleList.get(i).getVehicleType());
+        try {
+            String id = cmbVehicle.getValue();
+            for(int i=0; i<DB.vehicleList.size(); i++){
+                String no = DB.vehicleList.get(i).getVehicleNo();
+                if(id.equals(no)){
+                    lblVehicleType.setText(DB.vehicleList.get(i).getVehicleType());
+                }
             }
-        }
-        switch (lblVehicleType.getText()){
-            case "Van": {
-                setSlot("Van");
-            }break;
+            switch (lblVehicleType.getText()){
+                case "Van": {
+                    setSlot("Van");
+                }break;
 
-            case "Bus": {
-                setSlot("Bus");
-            }break;
+                case "Bus": {
+                    setSlot("Bus");
+                }break;
 
-            case "Cargo Lorry": {
-                setSlot("Cargo Lorry");
-            }break;
+                case "Cargo Lorry": {
+                    setSlot("Cargo Lorry");
+                }break;
+            }
+        }catch (NullPointerException e){
         }
     }
 
@@ -181,6 +183,15 @@ public class DashBoardFormController {
                     txtSlotNo.setText(DB.slotTable.get(i).getSlotNo());
                     return;
                 }
+            }
+        }
+        slotExists();
+    }
+
+    private void slotExists() {
+        for(int i=0; i<DB.parkingList.size(); i++){
+            if(DB.parkingList.get(i).getVehicleNo().equals(cmbVehicle.getValue())){
+                txtSlotNo.setText("");
             }
         }
     }
