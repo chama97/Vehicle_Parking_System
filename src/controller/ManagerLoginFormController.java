@@ -21,18 +21,21 @@ public class ManagerLoginFormController {
     public Label lblLogin;
     public Button btnLogin;
 
-    public void parkingAndDeliveryOnAction(ActionEvent actionEvent) throws IOException {
-        checkLogin();
+    public void inParkingOnAction(ActionEvent actionEvent) {
+        try {
+            checkLogin();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
     private void checkLogin() throws IOException {
-        if(unLogin.getText().toString().equals("aaa") && pwLogin.getText().toString().equals("123")) {
+        if(unLogin.getText().equals("aaa") && pwLogin.getText().equals("123")) {
            lblLogin.setText("Success!");
-            URL resource  = (getClass().getResource("../view/ManagementForm.fxml"));
+            URL resource  = (getClass().getResource("../view/InParkingForm.fxml"));
             Parent load = FXMLLoader.load(resource);
             Stage window = (Stage) MngContext.getScene().getWindow();
             window.setScene(new Scene(load));
-
-
         }
         else if(unLogin.getText().isEmpty() && pwLogin.getText().isEmpty()) {
             lblLogin.setText("Please enter your data.");
@@ -43,12 +46,9 @@ public class ManagerLoginFormController {
     }
 
     public void backToDashBoardOnAction(ActionEvent actionEvent) throws IOException {
-        URL resource  = (getClass().getResource("../view/DashBoardForm.fxml"));
-        Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) MngContext.getScene().getWindow();
-        window.setScene(new Scene(load));
+        window.close();
     }
-
 
     public void moveToPassword(ActionEvent actionEvent) {
         pwLogin.requestFocus();
@@ -57,5 +57,7 @@ public class ManagerLoginFormController {
     public void moveToLogin(ActionEvent actionEvent) {
         btnLogin.requestFocus();
     }
+
+
 }
 

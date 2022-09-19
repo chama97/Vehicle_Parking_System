@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,6 +26,7 @@ public class InParkingFormController {
     public TableColumn<Parking, String>  colVType;
     public TableColumn<Parking, String>  colSlot;
     public TableColumn<Parking, String>  colParkTime;
+    public ComboBox cmbInParking;
 
     ArrayList<Parking> parkList = new ArrayList<>();
 
@@ -62,5 +64,11 @@ public class InParkingFormController {
         Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) parkingContext.getScene().getWindow();
         window.setScene(new Scene(load));
+    }
+
+    public void AddDriverOnAction(ActionEvent actionEvent) {
+    }
+
+    public void AddVehicleOnAction(ActionEvent actionEvent) {
     }
 }

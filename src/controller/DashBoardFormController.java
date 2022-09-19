@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.Delivery;
 import model.Driver;
@@ -20,7 +21,6 @@ import model.Parking;
 import model.Vehicle;
 
 import java.io.IOException;
-import java.net.URL;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class DashBoardFormController {
-    public AnchorPane dashBoardContext;
+    public static AnchorPane dashBoardContext;
     public Label txtSlotNo;
     public ComboBox<String> cmbDriver;
     public Label lblTime;
@@ -81,10 +81,12 @@ public class DashBoardFormController {
     }
 
     public void managementLoginOnAction(ActionEvent actionEvent) throws IOException {
-        URL resource = (getClass().getResource("../view/ManagerLoginForm.fxml"));
-        Parent load = FXMLLoader.load(resource);
-        Stage window = (Stage) dashBoardContext.getScene().getWindow();
-        window.setScene(new Scene(load));
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/ManagerLoginForm.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UTILITY);
+        stage.show();
     }
 
     public void parkVehicleSaveOnAction(ActionEvent actionEvent) {
