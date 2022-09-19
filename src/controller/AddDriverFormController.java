@@ -8,12 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.NewDriver;
+import model.Driver;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AddDriverFormController {
     public AnchorPane addDriverContext;
@@ -26,7 +24,7 @@ public class AddDriverFormController {
 
     public void AddDriverSaveOnAction(ActionEvent actionEvent) {
 
-        NewDriver driver = new NewDriver(txtDrName.getText(), txtNIC.getText(), txtLiceNo.getText(), txtAddress.getText(), txtContact.getText());
+        Driver driver = new Driver(txtDrName.getText(), txtNIC.getText(), txtLiceNo.getText(), txtAddress.getText(), txtContact.getText());
         try{
             FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/DriversForm.fxml"));
             Parent parent = loader.load();

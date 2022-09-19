@@ -2,18 +2,17 @@ package model;
 
 import javafx.collections.ObservableList;
 
-public class NewDriver {
+public class Driver {
     private String driverName;
     private String NIC;
     private String licenseNo;
     private String address;
     private String contact;
 
-    public NewDriver(ObservableList<String> value) {
+    public Driver() {
     }
 
-
-    public NewDriver(String driverName, String NIC, String licenseNo, String address, String contact) {
+    public Driver(String driverName, String NIC, String licenseNo, String address, String contact) {
         this.setDriverName(driverName);
         this.setNIC(NIC);
         this.setLicenseNo(licenseNo);

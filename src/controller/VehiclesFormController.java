@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.NewDriver;
 import model.NewVehicle;
 import view.tm.DriverTm;
 import view.tm.VehicleTm;

@@ -2,16 +2,16 @@ package model;
 
 import javafx.collections.ObservableList;
 
-public class NewVehicle {
+public class Vehicle {
     private String vehicleNo;
     private String vehicleType;
     private String weight;
     private String noPassengers;
 
-    public NewVehicle() {
+    public Vehicle() {
     }
 
-    public NewVehicle(String vehicleNo, String vehicleType, String weight, String noPassengers) {
+    public Vehicle(String vehicleNo, String vehicleType, String weight, String noPassengers) {
         this.setVehicleNo(vehicleNo);
         this.setVehicleType(vehicleType);
         this.setWeight(weight);

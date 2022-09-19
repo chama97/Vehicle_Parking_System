@@ -11,7 +11,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.NewDriver;
 import model.NewVehicle;
 
 import java.io.IOException;
