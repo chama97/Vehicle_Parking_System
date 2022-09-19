@@ -1,5 +1,6 @@
 package controller;
 
+import db.DB;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -7,19 +8,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Delivery;
+import model.Driver;
 import model.Parking;
+import model.Vehicle;
 
 import java.io.IOException;
 import java.net.URL;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class DashBoardFormController {
     public AnchorPane dashBoardContext;
@@ -34,17 +41,11 @@ public class DashBoardFormController {
 
     public void initialize() {
 
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("    HH:mm:ss ");
-            lblTime.setText(LocalDateTime.now().format(dateFormatter));
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("              yyyy-MM-dd ");
-            lblDate.setText(LocalDateTime.now().format(timeFormatter));
+        loadDateAndTime();
+        loadAllDrivers();
+        loadAllVehicles();
 
-        }), new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
-
-        cmbDriver.getItems().addAll(
+       /* cmbDriver.getItems().addAll(
                 "Sumith Kumara",
                 "Amila Pathirana",
                 "Jithmal Perera",
@@ -79,28 +80,46 @@ public class DashBoardFormController {
                 "CBB-3566",
                 "QH-3444"
 
-        );
-
-
-     /*   FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/VehiclesForm.fxml"));
-        VehiclesFormController controller = loader.getController();
-        ObservableList<String> observableList = FXCollections.observableArrayList();
-        for (String temp : controller.get
-             ) {
-
-        }
-*/
+        );*/
     }
-    // controller.setTextDrivers(cmbDriver.getAccessibleText());
 
+    private void loadDateAndTime() {
+        Date date = new Date();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        lblDate.setText(f.format(date));
+
+        Timeline time = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            LocalTime currentTime = LocalTime.now();
+            lblTime.setText(
+                    currentTime.getHour() + " : " + currentTime.getMinute() +
+                            " : " + currentTime.getSecond()
+            );
+        }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        time.setCycleCount(Animation.INDEFINITE);
+        time.play();
+    }
+
+    private void loadAllDrivers() {
+        ArrayList<Driver> all = DB.driverList;
+        for (Driver dto : all) {
+            cmbDriver.getItems().add(dto.getDriverName());
+        }
+    }
+
+    private void loadAllVehicles() {
+        ArrayList<Vehicle> all = DB.vehicleList;
+        for (Vehicle dto : all) {
+            cmbDriver.getItems().add(dto.getVehicleNo());
+        }
+    }
 
     public void managementLoginOnAction(ActionEvent actionEvent) throws IOException {
         URL resource = (getClass().getResource("../view/ManagerLoginForm.fxml"));
         Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) dashBoardContext.getScene().getWindow();
         window.setScene(new Scene(load));
-
-
     }
 
     public void parkVehicleSaveOnAction(ActionEvent actionEvent) {
