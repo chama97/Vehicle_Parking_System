@@ -36,7 +36,7 @@
             <TableColumn fx:id="colLeftTime" prefWidth="250.0" text="Left Time" />
          </columns>
       </TableView>
-      <ComboBox fx:id="cmbOnDelevery" layoutX="55.0" layoutY="193.0" prefHeight="51.0" prefWidth="283.0" promptText="On Delevery" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-cursor: hand;" />
+      <ComboBox fx:id="cmbOnDelivery" layoutX="55.0" layoutY="193.0" onAction="#moveInParkingAction" prefHeight="51.0" prefWidth="283.0" promptText="On Delevery" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-cursor: hand;" />
       <Button layoutX="963.0" layoutY="190.0" mnemonicParsing="false" onAction="#AddDriverOnAction" prefHeight="57.0" prefWidth="198.0" style="-fx-background-color: #468656; -fx-background-radius: 40;" text="Add Driver" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="19.0" />

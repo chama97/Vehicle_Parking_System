@@ -109,8 +109,6 @@ public class DashBoardFormController {
                     DB.deliveryList.remove(i);
                 }
             }
-            Delivery delivery = new Delivery(cmbVehicle.getValue(), lblVehicleType.getText(), cmbDriver.getValue(), lblTime.getText());
-            DB.deliveryList.add(delivery);
         }
     }
 
@@ -148,8 +146,8 @@ public class DashBoardFormController {
     private void clearData() {
         lblVehicleType.setText(null);
         txtSlotNo.setText(null);
-        cmbVehicle.getSelectionModel().clearSelection();
-        cmbDriver.getSelectionModel().clearSelection();
+//        cmbVehicle.getSelectionModel().clearSelection();
+//        cmbDriver.getSelectionModel().clearSelection();
     }
 
 

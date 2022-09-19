@@ -39,7 +39,7 @@ public class InParkingFormController {
 
         loadAllSParks();
 
-        cmbInParking.getItems().add("On Delivery");
+        cmbInParking.getItems().add("In Parking");
         cmbInParking.getItems().add("On Delivery");
     }
 
