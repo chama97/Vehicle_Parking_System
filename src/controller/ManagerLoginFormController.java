@@ -46,8 +46,12 @@ public class ManagerLoginFormController {
     }
 
     public void backToDashBoardOnAction(ActionEvent actionEvent) throws IOException {
+        URL resource  = (getClass().getResource("../view/DashBoardForm.fxml"));
+        Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) MngContext.getScene().getWindow();
-        window.close();
+        window.setScene(new Scene(load));
+//        Stage window = (Stage) MngContext.getScene().getWindow();
+//        window.close();
     }
 
     public void moveToPassword(ActionEvent actionEvent) {

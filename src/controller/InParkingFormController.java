@@ -56,8 +56,10 @@ public class InParkingFormController {
     }
 
     public void backToHomeOnAction(ActionEvent actionEvent) throws IOException {
+        URL resource  = (getClass().getResource("../view/DashBoardForm.fxml"));
+        Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) parkingContext.getScene().getWindow();
-        window.close();
+        window.setScene(new Scene(load));
     }
 
     public void AddDriverOnAction(ActionEvent actionEvent) throws IOException {

@@ -22,6 +22,7 @@ import model.Vehicle;
 
 import java.io.IOException;
 
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -80,12 +81,16 @@ public class DashBoardFormController {
     }
 
     public void managementLoginOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("../view/ManagerLoginForm.fxml"));
-        Scene scene = new Scene(parent);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UTILITY);
-        stage.show();
+        URL resource  = (getClass().getResource("../view/ManagerLoginForm.fxml"));
+        Parent load = FXMLLoader.load(resource);
+        Stage window = (Stage) dashBoardContext.getScene().getWindow();
+        window.setScene(new Scene(load));
+//        Parent parent = FXMLLoader.load(getClass().getResource("../view/ManagerLoginForm.fxml"));
+//        Scene scene = new Scene(parent);
+//        Stage stage = new Stage();
+//        stage.setScene(scene);
+//        stage.initStyle(StageStyle.UTILITY);
+//        stage.show();
     }
 
     public void parkVehicleSaveOnAction(ActionEvent actionEvent) {
