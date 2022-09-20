@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXTextField;
+import db.DB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,41 +25,29 @@ public class AddDriverFormController {
 
     public void AddDriverSaveOnAction(ActionEvent actionEvent) {
 
-//        Driver driver = new Driver(txtDrName.getText(), txtNIC.getText(), txtLiceNo.getText(), txtAddress.getText(), txtContact.getText());
-//        try{
-//            FXMLLoader loader =  new FXMLLoader(getClass().getResource("../view/DriversForm.fxml"));
-//            Parent parent = loader.load();
-//
-//
-//            if (controller.getDriverList().add(driver)) {
-//                controller.loadAllSDrivers();
-//                new Alert(Alert.AlertType.CONFIRMATION, "Saved..", ButtonType.CLOSE).show();
-//            } else {
-//                new Alert(Alert.AlertType.WARNING, "Try Again..", ButtonType.CLOSE).show();
-//            }
-//
-//
-//            Stage window = (Stage) addDriverContext.getScene().getWindow();
-//            window.setScene(new Scene(parent));
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        if(txtDrName.getText().equals("") || txtLiceNo.getText().equals("") ||
+                txtNIC.getText().equals("") || txtAddress.getText().equals("") || txtContact.getText().equals("")) {
+            new Alert(Alert.AlertType.WARNING, "Please Fill All Data", ButtonType.CLOSE).show();
 
+        } else {
+            Driver driver = new Driver(txtDrName.getText(), txtNIC.getText(), txtLiceNo.getText(), txtAddress.getText(), txtContact.getText());
+
+            if (DB.driverList.add(driver)) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved Driver Successfully", ButtonType.CLOSE).show();
+                clearTextField();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Try Again", ButtonType.CLOSE).show();
+            }
+        }
     }
 
-    public void moveToPassword(ActionEvent actionEvent) {
-
+    public void clearTextField() {
+        txtDrName.setText(null);
+        txtNIC.setText(null);
+        txtLiceNo.setText(null);
+        txtAddress.setText(null);
+        txtContact.setText(null);
     }
-
-    public void setTextField(String driverName, String NIC, String licenseNo, String address, String contact) {
-        txtDrName.setText(driverName);
-        txtNIC.setText(NIC);
-        txtLiceNo.setText(licenseNo);
-        txtAddress.setText(address);
-        txtContact.setText(contact);
-    }
-
 
     public void moveToNICOnAction(ActionEvent actionEvent) {
         txtNIC.requestFocus();
@@ -74,5 +63,8 @@ public class AddDriverFormController {
 
     public void moveToContactOnAction(ActionEvent actionEvent) {
         txtContact.requestFocus();
+    }
+
+    public void CancelOnAction(ActionEvent actionEvent) {
     }
 }
