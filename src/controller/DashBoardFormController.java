@@ -85,12 +85,6 @@ public class DashBoardFormController {
         Parent load = FXMLLoader.load(resource);
         Stage window = (Stage) dashBoardContext.getScene().getWindow();
         window.setScene(new Scene(load));
-//        Parent parent = FXMLLoader.load(getClass().getResource("../view/ManagerLoginForm.fxml"));
-//        Scene scene = new Scene(parent);
-//        Stage stage = new Stage();
-//        stage.setScene(scene);
-//        stage.initStyle(StageStyle.UTILITY);
-//        stage.show();
     }
 
     public void parkVehicleSaveOnAction(ActionEvent actionEvent) {
