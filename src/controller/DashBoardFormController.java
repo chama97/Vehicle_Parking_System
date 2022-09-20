@@ -196,10 +196,48 @@ public class DashBoardFormController {
         }
     }
 
+    public int isExistsParking(){
+        int x=-1;
+        for(int i=0; i<DB.parkingList.size(); i++) {
+            if (DB.parkingList.get(i).getVehicleNo().equals(cmbVehicle.getValue())) {
+                x = i;
+            }
+        }
+        return x;
+    }
+
+    public int isExistsDelivery(){
+        int x=-1;
+        for(int i=0; i<DB.deliveryList.size(); i++){
+            if (DB.deliveryList.get(i).getVehicleNo().equals(cmbVehicle.getValue())) {
+                x = i;
+            }
+        }
+        return x;
+    }
+
+
     public void driverNameOnAction (ActionEvent actionEvent){
         if(lblVehicleType.getText()!=null) {
-            btnPark.setDisable(false);
-            btnDelivery.setDisable(false);
+            if(DB.parkingList.size()==0 && DB.deliveryList.size()==0){
+                btnPark.setDisable(false);
+                btnDelivery.setDisable(false);
+            }
+            else if(DB.deliveryList.size()!=0 || DB.parkingList.size()!=0){
+
+                if (isExistsParking() != -1) {
+                    btnDelivery.setDisable(false);
+                    btnPark.setDisable(true);
+
+                }else if (isExistsDelivery() != -1) {
+                    btnDelivery.setDisable(true);
+                    btnPark.setDisable(false);
+
+                }else {
+                    btnPark.setDisable(false);
+                    btnDelivery.setDisable(false);
+                }
+            }
         }
     }
 }
