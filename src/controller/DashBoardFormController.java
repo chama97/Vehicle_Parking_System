@@ -144,7 +144,7 @@ public class DashBoardFormController {
     private void clearData() {
         lblVehicleType.setText(null);
         txtSlotNo.setText(null);
-        cmbVehicle.valueProperty().set(null);;
+        cmbVehicle.valueProperty().set(null);
         cmbDriver.valueProperty().set(null);
     }
 
@@ -176,21 +176,16 @@ public class DashBoardFormController {
     }
 
     private void setSlot(String vehicleType) {
-        for(int i=0; i<DB.slotTable.size(); i++){
-            for (int j=0; j<DB.slotTable.size(); j++){
-                if(vehicleType.equals(DB.slotTable.get(i).getVehicleType()) && DB.slotTable.get(i).isStatus() == false){
-                    txtSlotNo.setText(DB.slotTable.get(i).getSlotNo());
-                    return;
+        if (isExistsParking() != -1) {
+            txtSlotNo.setText("");
+        }else {
+            for(int i=0; i<DB.slotTable.size(); i++){
+                for (int j=0; j<DB.slotTable.size(); j++){
+                    if(vehicleType.equals(DB.slotTable.get(i).getVehicleType()) && DB.slotTable.get(i).isStatus() == false){
+                        txtSlotNo.setText(DB.slotTable.get(i).getSlotNo());
+                        return;
+                    }
                 }
-            }
-        }
-        slotExists();
-    }
-
-    private void slotExists() {
-        for(int i=0; i<DB.parkingList.size(); i++){
-            if(DB.parkingList.get(i).getVehicleNo().equals(cmbVehicle.getValue())){
-                txtSlotNo.setText("");
             }
         }
     }
